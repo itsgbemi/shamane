@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shamana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Work Sans',sans-serif;background-color:#000;color:#fff;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1200px;margin:0 auto;padding:0 15px;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:15px 0;position:relative;}
+.logo img{max-width:100%;height:30px;}
+.nav{display:flex;gap:30px;}
+.nav a{font-weight:500;position:relative;}
+.nav a.active:after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background-color:#fff;}
+.search-bar{flex:1;max-width:400px;margin:0 20px;position:relative;}
+.search-bar input{width:100%;padding:8px 15px;border-radius:20px;border:none;background-color:#222;color:#fff;}
+.search-bar i{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#999;}
+.actions{display:flex;align-items:center;gap:15px;}
+.upload-btn{display:flex;align-items:center;gap:5px;background-color:#555;padding:8px 15px;border-radius:20px;font-weight:500;cursor:pointer;}
+.user-account{display:flex;align-items:center;gap:5px;cursor:pointer;}
+.user-account img{width:32px;height:32px;border-radius:50%;object-fit:cover;}
+.hero-banner{background:linear-gradient(135deg,#6a11cb,#2575fc);border-radius:12px;padding:60px;margin:40px 0;text-align:center;}
+.hero-content{max-width:600px;margin:0 auto;}
+.hero-content h1{font-size:2.5rem;margin-bottom:15px;}
+.hero-content p{font-size:1.1rem;margin-bottom:25px;opacity:0.9;}
+.cta-button{background:#fff;color:#6a11cb;border:none;padding:12px 30px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform 0.2s;}
+.cta-button:hover{transform:scale(1.05);}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;width:100%;background-color:#111;z-index:1000;padding:10px 0;}
+.mobile-nav-items{display:flex;justify-content:space-around;}
+.mobile-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;}
+.mobile-nav-item i{font-size:18px;}
+.player-bar{position:fixed;bottom:0;left:0;width:100%;background:rgba(30,30,30,0.8);backdrop-filter:blur(10px);padding:15px;z-index:900;}
+.player-controls{display:flex;justify-content:center;align-items:center;gap:20px;}
+.player-controls button{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;}
+.player-controls .play-pause{font-size:28px;}
+@media (max-width:768px){
+.nav,.search-bar{display:none;}
+.mobile-nav{display:block;}
+.player-bar{bottom:60px;}
+.hero-banner{padding:40px 20px;}
+.hero-content h1{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<div class="header">
+<a href="#" class="logo"><img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758201861/y3p2lwz2oq5gwny6ktyu.svg" alt="Shamana"></a>
+<nav class="nav">
+<a href="#" class="active">Home</a>
+<a href="#">Trybe</a>
+<a href="#">Library</a>
+</nav>
+<div class="search-bar">
+<input type="text" placeholder="Search...">
+<i class="fas fa-search"></i>
+</div>
+<div class="actions">
+<div class="upload-btn">
+<i class="fas fa-cloud-upload-alt"></i>
+<span>Upload</span>
+</div>
+<div class="user-account">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User">
+<i class="fas fa-chevron-down"></i>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<section class="hero-banner">
+<div class="hero-content">
+<h1>Discover Your Sound</h1>
+<p>Create, share, and explore music with a global community of artists and listeners.</p>
+<button class="cta-button">Create Playlist</button>
+</div>
+</section>
+</div>
+</main>
+<div class="player-bar">
+<div class="player-controls">
+<button><i class="fas fa-step-backward"></i></button>
+<button><i class="fas fa-play-circle play-pause"></i></button>
+<button><i class="fas fa-step-forward"></i></button>
+</div>
+</div>
+<nav class="mobile-nav">
+<div class="mobile-nav-items">
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-home"></i>
+<span>Home</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-users"></i>
+<span>Trybe</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-book"></i>
+<span>Library</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-search"></i>
+<span>Search</span>
+</a>
+</div>
+</nav>
+</body>
+</html>
