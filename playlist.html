@@ -27,65 +27,352 @@ a{text-decoration:none;color:inherit;}
 .user-account i{font-size:32px;color:#fff;}
 
 /* Playlist Banner */
-.playlist-banner {position:relative;height:300px;border-radius:12px;overflow:hidden;margin:40px 0;display:flex;align-items:flex-end;padding:40px;background:linear-gradient(135deg,#6a11cb,#2575fc);}
-.playlist-info {position:relative;z-index:2;width:100%;}
-.playlist-title {font-size:2.5rem;font-weight:700;margin-bottom:10px;}
-.playlist-description {font-size:1.1rem;margin-bottom:20px;opacity:0.9;max-width:600px;}
-.playlist-stats {display:flex;gap:20px;font-size:0.9rem;color:#ccc;}
-.playlist-stat {display:flex;align-items:center;gap:5px;}
+.playlist-banner {
+    position:relative;
+    height:300px;
+    border-radius:12px;
+    overflow:hidden;
+    margin:40px 0;
+    display:flex;
+    align-items:flex-end;
+    padding:40px;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+.playlist-info {
+    position:relative;
+    z-index:2;
+    width:100%;
+}
+.playlist-title {
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+.playlist-description {
+    font-size:1.1rem;
+    margin-bottom:20px;
+    opacity:0.9;
+    max-width:600px;
+}
+.playlist-stats {
+    display:flex;
+    gap:20px;
+    font-size:0.9rem;
+    color:#ccc;
+}
+.playlist-stat {
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
 
 /* Playlist Content */
-.playlist-content {display:flex;gap:30px;margin-bottom:60px;}
-.playlist-main {flex:3;display:flex;flex-direction:column;gap:30px;}
-.playlist-sidebar {flex:1;display:flex;flex-direction:column;gap:30px;}
+.playlist-content {
+    display:flex;
+    gap:30px;
+    margin-bottom:60px;
+}
+.playlist-main {
+    flex:3;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+.playlist-sidebar {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
 
 /* Playlist Box */
-.playlist-box {background:#111;border-radius:12px;padding:20px;}
-.comment-input {display:flex;gap:10px;margin-bottom:20px;}
-.commenter-avatar {width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;}
-.comment-input-field {flex:1;background:#222;border:none;border-radius:20px;padding:12px 15px;color:#fff;font-family:inherit;}
-.comment-input-field:focus {outline:none;}
-.action-buttons {display:flex;gap:15px;margin-bottom:20px;}
-.action-btn {display:flex;align-items:center;gap:5px;background:transparent;border:none;color:#ccc;cursor:pointer;font-size:0.9rem;transition:color 0.2s;}
-.action-btn:hover {color:#fff;}
-.action-btn.active {color:#6a11cb;}
-.song-list {display:flex;flex-direction:column;gap:10px;}
-.song-item {display:flex;align-items:center;gap:15px;padding:10px;border-radius:8px;transition:background 0.2s;}
-.song-item:hover {background:#1a1a1a;}
-.song-number {color:#6a11cb;font-weight:500;width:25px;text-align:center;}
-.song-info {flex:1;}
-.song-title {font-weight:500;margin-bottom:3px;}
-.song-artist {font-size:0.85rem;color:#999;}
-.song-duration {color:#999;font-size:0.9rem;margin:0 15px;}
-.song-actions {display:flex;gap:10px;}
-.song-action-btn {background:transparent;border:none;color:#999;cursor:pointer;font-size:0.9rem;}
-.song-action-btn:hover {color:#fff;}
+.playlist-box {
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+}
+.comment-input {
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+.commenter-avatar {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    flex-shrink:0;
+}
+.comment-input-field {
+    flex:1;
+    background:#222;
+    border:none;
+    border-radius:20px;
+    padding:12px 15px;
+    color:#fff;
+    font-family:inherit;
+}
+.comment-input-field:focus {
+    outline:none;
+}
+.action-buttons {
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+.action-btn {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:transparent;
+    border:none;
+    color:#ccc;
+    cursor:pointer;
+    font-size:0.9rem;
+    transition:color 0.2s;
+}
+.action-btn:hover {
+    color:#fff;
+}
+.action-btn.active {
+    color:#6a11cb;
+}
+.song-list {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:25px;
+}
+.song-item {
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px;
+    border-radius:8px;
+    transition:background 0.2s;
+}
+.song-item:hover {
+    background:#1a1a1a;
+}
+.song-number {
+    color:#6a11cb;
+    font-weight:500;
+    width:25px;
+    text-align:center;
+}
+.song-info {
+    flex:1;
+}
+.song-title {
+    font-weight:500;
+    margin-bottom:3px;
+}
+.song-artist {
+    font-size:0.85rem;
+    color:#999;
+}
+.song-duration {
+    color:#999;
+    font-size:0.9rem;
+    margin:0 15px;
+}
+.song-actions {
+    display:flex;
+    gap:10px;
+}
+.song-action-btn {
+    background:transparent;
+    border:none;
+    color:#999;
+    cursor:pointer;
+    font-size:0.9rem;
+}
+.song-action-btn:hover {
+    color:#fff;
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 25px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+}
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.comments-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.comments-filter {
+    background: transparent;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.comment {
+    display: flex;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #222;
+}
+.comment:last-child {
+    border-bottom: none;
+}
+.comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.comment-content {
+    flex: 1;
+}
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.commenter-name {
+    font-weight: 500;
+}
+.comment-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+.comment-text {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+.comment-actions {
+    display: flex;
+    gap: 15px;
+}
+.comment-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.comment-action:hover {
+    color: #fff;
+}
+.comment-action.active {
+    color: #6a11cb;
+}
 
 /* Playlist Addition Box */
-.playlist-addition-box {background:#111;border-radius:12px;padding:20px;}
-.box-title {font-size:1.2rem;font-weight:600;margin-bottom:15px;}
-.song-queue {margin-bottom:25px;}
-.queue-item {display:flex;align-items:center;gap:10px;padding:8px 0;}
-.queue-item:not(:last-child) {border-bottom:1px solid #222;}
-.queue-info {flex:1;}
-.queue-title {font-size:0.9rem;font-weight:500;}
-.queue-artist {font-size:0.8rem;color:#999;}
-.queue-duration {color:#999;font-size:0.8rem;}
+.playlist-addition-box {
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+}
+.box-title {
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:15px;
+}
+.song-queue {
+    margin-bottom:25px;
+}
+.queue-item {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+}
+.queue-item:not(:last-child) {
+    border-bottom:1px solid #222;
+}
+.queue-info {
+    flex:1;
+}
+.queue-title {
+    font-size:0.9rem;
+    font-weight:500;
+}
+.queue-artist {
+    font-size:0.8rem;
+    color:#999;
+}
+.queue-duration {
+    color:#999;
+    font-size:0.8rem;
+}
 
 /* Avatar Groups */
-.avatar-group {display:flex;margin:15px 0 25px;}
-.avatar {width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid #111;margin-left:-10px;}
-.avatar:first-child {margin-left:0;}
-.avatar-more {width:35px;height:35px;border-radius:50%;background:#6a11cb;display:flex;align-items:center;justify-content:center;font-size:0.8rem;margin-left:-10px;}
+.avatar-group {
+    display:flex;
+    margin:15px 0 25px;
+}
+.avatar {
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #111;
+    margin-left:-10px;
+}
+.avatar:first-child {
+    margin-left:0;
+}
+.avatar-more {
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#6a11cb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    margin-left:-10px;
+}
 
 /* Creator Playlists */
-.creator-playlists {margin-top:25px;}
-.creator-playlist {display:flex;gap:10px;padding:10px 0;}
-.creator-playlist:not(:last-child) {border-bottom:1px solid #222;}
-.playlist-thumb-small {width:50px;height:50px;border-radius:8px;background:linear-gradient(135deg,#6a11cb,#2575fc);flex-shrink:0;}
-.playlist-info-small {flex:1;}
-.playlist-name-small {font-size:0.9rem;font-weight:500;margin-bottom:3px;}
-.playlist-songs-small {font-size:0.8rem;color:#999;}
+.creator-playlists {
+    margin-top:25px;
+}
+.creator-playlist {
+    display:flex;
+    gap:10px;
+    padding:10px 0;
+}
+.creator-playlist:not(:last-child) {
+    border-bottom:1px solid #222;
+}
+.playlist-thumb-small {
+    width:50px;
+    height:50px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    flex-shrink:0;
+}
+.playlist-info-small {
+    flex:1;
+}
+.playlist-name-small {
+    font-size:0.9rem;
+    font-weight:500;
+    margin-bottom:3px;
+}
+.playlist-songs-small {
+    font-size:0.8rem;
+    color:#999;
+}
 
 /* Player Bar */
 .player-bar{position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(90deg, rgba(30,30,30,0.95), rgba(50,50,50,0.95));backdrop-filter:blur(10px);padding:20px;z-index:900;display:flex;align-items:center;justify-content:space-between;}
@@ -281,6 +568,97 @@ a{text-decoration:none;color:inherit;}
 </div>
 </div>
 </div>
+
+<!-- Comments Section -->
+<div class="comments-section">
+<div class="comments-header">
+<h3 class="comments-title">Comments</h3>
+<select class="comments-filter">
+<option>Newest first</option>
+<option>Most liked</option>
+</select>
+</div>
+<div class="comment">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="comment-avatar">
+<div class="comment-content">
+<div class="comment-header">
+<span class="commenter-name">Sarah Chen</span>
+<span class="comment-time">2 hours ago</span>
+</div>
+<p class="comment-text">This playlist is absolutely fire! The transition between tracks is seamless. Perfect for my morning commute.</p>
+<div class="comment-actions">
+<button class="comment-action">
+<i class="far fa-heart"></i>
+<span>24</span>
+</button>
+<button class="comment-action">
+<i class="far fa-comment"></i>
+<span>Reply</span>
+</button>
+</div>
+</div>
+</div>
+<div class="comment">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="comment-avatar">
+<div class="comment-content">
+<div class="comment-header">
+<span class="commenter-name">Marcus Brown</span>
+<span class="comment-time">5 hours ago</span>
+</div>
+<p class="comment-text">Needs more Arctic Monkeys! Maybe add "R U Mine?" to the mix? Otherwise solid playlist.</p>
+<div class="comment-actions">
+<button class="comment-action">
+<i class="far fa-heart"></i>
+<span>12</span>
+</button>
+<button class="comment-action">
+<i class="far fa-comment"></i>
+<span>Reply</span>
+</button>
+</div>
+</div>
+</div>
+<div class="comment">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="comment-avatar">
+<div class="comment-content">
+<div class="comment-header">
+<span class="commenter-name">Jamal Williams</span>
+<span class="comment-time">1 day ago</span>
+</div>
+<p class="comment-text">Discovered so many new artists from this playlist. That MGMT track is now on repeat!</p>
+<div class="comment-actions">
+<button class="comment-action active">
+<i class="fas fa-heart"></i>
+<span>42</span>
+</button>
+<button class="comment-action">
+<i class="far fa-comment"></i>
+<span>Reply</span>
+</button>
+</div>
+</div>
+</div>
+<div class="comment">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="comment-avatar">
+<div class="comment-content">
+<div class="comment-header">
+<span class="commenter-name">Elena Rodriguez</span>
+<span class="comment-time">2 days ago</span>
+</div>
+<p class="comment-text">The sequencing is perfect! Love how each track flows into the next. This is my go-to playlist for coding sessions.</p>
+<div class="comment-actions">
+<button class="comment-action">
+<i class="far fa-heart"></i>
+<span>31</span>
+</button>
+<button class="comment-action">
+<i class="far fa-comment"></i>
+<span>Reply</span>
+</button>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -454,6 +832,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 playPauseBtn.querySelector('i').classList.add('fa-pause-circle');
                 playActionBtn.querySelector('i').classList.remove('fa-play');
                 playActionBtn.querySelector('i').classList.add('fa-pause');
+            }
+        });
+    });
+    
+    // Comment like functionality
+    const commentLikeBtns = document.querySelectorAll('.comment-action:first-child');
+    
+    commentLikeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const isLiked = this.querySelector('i').classList.contains('fas');
+            
+            if (isLiked) {
+                this.querySelector('i').classList.remove('fas');
+                this.querySelector('i').classList.add('far');
+                this.classList.remove('active');
+            } else {
+                this.querySelector('i').classList.remove('far');
+                this.querySelector('i').classList.add('fas');
+                this.classList.add('active');
             }
         });
     });
