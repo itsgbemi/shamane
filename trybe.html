@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trybe - Shamana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Work Sans',sans-serif;background-color:#000;color:#fff;letter-spacing:-0.5px;max-width:1600px;margin:0 auto;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1200px;margin:0 auto;padding:0 15px;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:20px;position:relative;max-width:1600px;margin:0 auto;}
+.logo img{height:100%;max-width:180px;}
+.nav{display:flex;gap:30px;}
+.nav a{font-weight:500;position:relative;}
+.nav a.active:after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background-color:#fff;}
+.search-bar{flex:1;max-width:400px;margin:0 20px;position:relative;}
+.search-bar input{width:100%;padding:8px 15px;border-radius:20px;border:none;background:#222;color:#fff;}
+.search-bar i{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#999;}
+.actions{display:flex;align-items:center;gap:15px;}
+.upload-btn{display:flex;align-items:center;gap:5px;font-weight:500;cursor:pointer;}
+.user-account{display:flex;align-items:center;gap:5px;cursor:pointer;}
+.user-account i{font-size:32px;color:#fff;}
+
+/* Trybe Banner */
+.trybe-banner {
+    position:relative;
+    height:250px;
+    border-radius:12px;
+    overflow:hidden;
+    margin:40px 0;
+    display:flex;
+    align-items:flex-end;
+    padding:40px;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+.trybe-info {
+    position:relative;
+    z-index:2;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+.trybe-details {
+    flex:1;
+}
+.trybe-title {
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+.trybe-description {
+    font-size:1.1rem;
+    margin-bottom:20px;
+    opacity:0.9;
+    max-width:600px;
+}
+.trybe-stats {
+    display:flex;
+    gap:20px;
+    font-size:0.9rem;
+    color:#ccc;
+}
+.trybe-stat {
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+.trybe-actions {
+    display:flex;
+    gap:15px;
+}
+.trybe-action-btn {
+    background:rgba(255,255,255,0.2);
+    border:none;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:20px;
+    font-weight:500;
+    cursor:pointer;
+    transition:background 0.2s;
+}
+.trybe-action-btn:hover {
+    background:rgba(255,255,255,0.3);
+}
+.trybe-action-btn.primary {
+    background:#fff;
+    color:#6a11cb;
+}
+.trybe-action-btn.primary:hover {
+    background:rgba(255,255,255,0.9);
+}
+
+/* Trybe Content */
+.trybe-content {
+    display:flex;
+    gap:30px;
+    margin-bottom:60px;
+}
+.trybe-feed {
+    flex:3;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+.trybe-sidebar {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/* Create Post */
+.create-post {
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+}
+.create-post-header {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+.create-post-header img {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.create-post-input {
+    flex:1;
+    background:#222;
+    border:none;
+    border-radius:20px;
+    padding:12px 15px;
+    color:#fff;
+    font-family:inherit;
+}
+.create-post-input:focus {
+    outline:none;
+}
+.create-post-actions {
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+.post-options {
+    display:flex;
+    gap:15px;
+}
+.post-option {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:transparent;
+    border:none;
+    color:#999;
+    cursor:pointer;
+    font-size:0.9rem;
+}
+.post-option:hover {
+    color:#fff;
+}
+.post-submit {
+    background:#6a11cb;
+    border:none;
+    color:#fff;
+    padding:8px 20px;
+    border-radius:20px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+/* Activity Card */
+.activity-card {
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+}
+.activity-header {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+.member-avatar {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.activity-meta {
+    flex:1;
+}
+.member-name {
+    font-weight:600;
+}
+.activity-time {
+    font-size:0.85rem;
+    color:#999;
+    margin-top:3px;
+}
+.post-type {
+    background:rgba(106,17,203,0.2);
+    color:#6a11cb;
+    padding:4px 12px;
+    border-radius:15px;
+    font-size:0.8rem;
+    font-weight:500;
+}
+.post-content {
+    margin-bottom:15px;
+    line-height:1.5;
+}
+.post-content img {
+    width:100%;
+    border-radius:8px;
+    margin-top:15px;
+}
+.activity-actions {
+    display:flex;
+    gap:15px;
+    border-top:1px solid #222;
+    padding-top:15px;
+}
+.activity-action {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:transparent;
+    border:none;
+    color:#999;
+    cursor:pointer;
+    font-size:0.9rem;
+}
+.activity-action:hover {
+    color:#fff;
+}
+.activity-action.active {
+    color:#6a11cb;
+}
+
+/* Trybe Info Box */
+.trybe-info-box {
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+}
+.box-title {
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.view-all {
+    color:#6a11cb;
+    font-size:0.9rem;
+    font-weight:500;
+}
+.trybe-description-box {
+    margin-bottom:25px;
+}
+.trybe-description-text {
+    color:#ccc;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+.trybe-members {
+    display:flex;
+    margin:15px 0 25px;
+}
+.member-avatar-small {
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #111;
+    margin-left:-10px;
+}
+.member-avatar-small:first-child {
+    margin-left:0;
+}
+.members-more {
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#6a11cb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    margin-left:-10px;
+}
+
+/* Playlist Item */
+.playlist-item {
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #222;
+}
+.playlist-item:last-child {
+    border-bottom:none;
+}
+.playlist-thumb {
+    width:60px;
+    height:60px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    flex-shrink:0;
+}
+.playlist-details {
+    flex:1;
+}
+.playlist-name {
+    font-weight:500;
+    margin-bottom:5px;
+}
+.playlist-creator {
+    font-size:0.8rem;
+    color:#999;
+    margin-bottom:5px;
+}
+.playlist-stats-small {
+    display:flex;
+    gap:10px;
+    font-size:0.75rem;
+    color:#999;
+}
+.playlist-stat-small {
+    display:flex;
+    align-items:center;
+    gap:3px;
+}
+
+/* Event Item */
+.event-item {
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #222;
+}
+.event-item:last-child {
+    border-bottom:none;
+}
+.event-date {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#6a11cb;
+    border-radius:8px;
+    min-width:50px;
+    height:50px;
+    padding:5px;
+    flex-shrink:0;
+}
+.event-day {
+    font-size:1.2rem;
+    font-weight:600;
+    line-height:1;
+}
+.event-month {
+    font-size:0.7rem;
+    text-transform:uppercase;
+}
+.event-info {
+    flex:1;
+}
+.event-title {
+    font-weight:500;
+    margin-bottom:3px;
+}
+.event-details {
+    font-size:0.8rem;
+    color:#ccc;
+    margin-bottom:5px;
+}
+.event-attendees {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:0.8rem;
+    color:#999;
+}
+.join-btn {
+    background:transparent;
+    border:1px solid #6a11cb;
+    color:#6a11cb;
+    padding:5px 12px;
+    border-radius:15px;
+    font-size:0.8rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:all 0.2s;
+    align-self:center;
+}
+.join-btn:hover {
+    background:#6a11cb;
+    color:#fff;
+}
+
+/* Player Bar */
+.player-bar{position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(90deg, rgba(30,30,30,0.95), rgba(50,50,50,0.95));backdrop-filter:blur(10px);padding:20px;z-index:900;display:flex;align-items:center;justify-content:space-between;}
+.player-info{flex:1;max-width:30%;}
+.song-name{font-weight:600;font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.artist-name{font-size:0.8rem;color:#ccc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-controls{display:flex;align-items:center;gap:15px;}
+.player-controls button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:0.8;transition:opacity 0.2s;}
+.player-controls button:hover{opacity:1;}
+.player-controls .play-pause{font-size:28px;}
+.player-progress{flex:2;max-width:40%;display:flex;align-items:center;gap:10px;}
+.progress-bar{flex:1;height:4px;background:rgba(255,255,255,0.3);border-radius:2px;cursor:pointer;position:relative;}
+.progress{position:absolute;height:100%;background:#fff;border-radius:2px;width:30%;}
+.time{font-size:0.7rem;color:#ccc;min-width:35px;}
+.time:first-child{text-align:right;}
+.player-actions{flex:1;max-width:30%;display:flex;justify-content:flex-end;gap:15px;}
+.player-actions button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:0.8;transition:opacity 0.2s;}
+.player-actions button:hover{opacity:1;}
+.player-actions button.active{color:#6a11cb;}
+
+/* Mobile Nav */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;width:100%;background-color:#111;z-index:1000;padding:10px 0;}
+.mobile-nav-items{display:flex;justify-content:space-around;}
+.mobile-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;}
+.mobile-nav-item i{font-size:18px;}
+
+/* Responsive Design */
+@media (max-width:1024px){
+.logo img{max-width:150px;}
+.trybe-banner {height:220px;padding:30px;}
+.trybe-title {font-size:2rem;}
+}
+@media (max-width:768px){
+.nav,.search-bar{display:none;}
+.logo img{max-width:120px;}
+.mobile-nav{display:block;}
+.player-bar{bottom:60px;background:linear-gradient(90deg, rgba(30,30,30,0.95), rgba(50,50,50,0.95));backdrop-filter:blur(15px);margin:10px;border-radius:30px;width:calc(100% - 20px);left:10px;padding:15px;flex-direction:row;align-items:center;gap:10px;}
+.player-info{max-width:none;flex:1;text-align:left;order:2;}
+.player-controls{order:1;gap:0;flex:0 0 auto;}
+.player-controls .shuffle,.player-controls .repeat,.player-controls .step-backward,.player-controls .step-forward{display:none;}
+.player-controls .play-pause{font-size:24px;margin-right:10px;}
+.player-progress{display:none;}
+.player-actions{max-width:none;order:3;justify-content:flex-end;gap:15px;position:static;flex:0 0 auto;}
+.trybe-content{flex-direction:column;}
+.trybe-feed,.trybe-sidebar{width:100%;}
+.trybe-banner{height:auto;flex-direction:column;align-items:flex-start;padding:20px;}
+.trybe-info{flex-direction:column;align-items:flex-start;gap:15px;}
+.trybe-actions{width:100%;justify-content:space-between;}
+.upload-btn{background-color:#555;padding:8px;border-radius:50%;}
+.upload-btn span{display:none;}
+.user-account i:last-child{display:none;}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header">
+<a href="#" class="logo"><img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758201861/y3p2lwz2oq5gwny6ktyu.svg" alt="Shamana"></a>
+<nav class="nav">
+<a href="#">Home</a>
+<a href="#" class="active">Trybe</a>
+<a href="#">Library</a>
+</nav>
+<div class="search-bar">
+<input type="text" placeholder="Search...">
+<i class="fas fa-search"></i>
+</div>
+<div class="actions">
+<div class="upload-btn">
+<i class="fas fa-cloud-upload-alt"></i>
+<span>Upload</span>
+</div>
+<div class="user-account">
+<i class="fas fa-user-circle"></i>
+<i class="fas fa-chevron-down"></i>
+</div>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<!-- Trybe Banner -->
+<section class="trybe-banner">
+<div class="trybe-info">
+<div class="trybe-details">
+<h1 class="trybe-title">Indie Rock Collective</h1>
+<p class="trybe-description">A community for indie rock enthusiasts to share music, discover new artists, and connect with like-minded fans.</p>
+<div class="trybe-stats">
+<div class="trybe-stat">
+<i class="fas fa-users"></i>
+<span>2.4K members</span>
+</div>
+<div class="trybe-stat">
+<i class="fas fa-music"></i>
+<span>128 playlists</span>
+</div>
+<div class="trybe-stat">
+<i class="fas fa-calendar"></i>
+<span>12 events</span>
+</div>
+</div>
+</div>
+<div class="trybe-actions">
+<button class="trybe-action-btn">Invite</button>
+<button class="trybe-action-btn primary">Join Trybe</button>
+</div>
+</div>
+</section>
+
+<!-- Trybe Content -->
+<section class="trybe-content">
+<div class="trybe-feed">
+<!-- Create Post -->
+<div class="create-post">
+<div class="create-post-header">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="You">
+<input type="text" class="create-post-input" placeholder="Share something with your trybe...">
+</div>
+<div class="create-post-actions">
+<div class="post-options">
+<button class="post-option">
+<i class="fas fa-image"></i>
+<span>Photo</span>
+</button>
+<button class="post-option">
+<i class="fas fa-music"></i>
+<span>Music</span>
+</button>
+<button class="post-option">
+<i class="fas fa-poll"></i>
+<span>Poll</span>
+</button>
+</div>
+<button class="post-submit">Post</button>
+</div>
+</div>
+
+<!-- Activity Cards -->
+<div class="activity-card">
+<div class="activity-header">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar">
+<div class="activity-meta">
+<div class="member-name">Sarah Chen</div>
+<div class="activity-time">2 hours ago</div>
+</div>
+<div class="post-type">Discussion</div>
+</div>
+<div class="post-content">
+<p>Just discovered this amazing new band called "The Backseat Lovers" - their song "Kilby Girl" is incredible! Anyone else into them?</p>
+</div>
+<div class="activity-actions">
+<button class="activity-action">
+<i class="far fa-thumbs-up"></i>
+<span>24</span>
+</button>
+<button class="activity-action">
+<i class="far fa-thumbs-down"></i>
+<span>2</span>
+</button>
+<button class="activity-action">
+<i class="far fa-comment"></i>
+<span>8</span>
+</button>
+<button class="activity-action">
+<i class="fas fa-share"></i>
+<span>Share</span>
+</button>
+</div>
+</div>
+
+<div class="activity-card">
+<div class="activity-header">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar">
+<div class="activity-meta">
+<div class="member-name">Alex Turner</div>
+<div class="activity-time">5 hours ago</div>
+</div>
+<div class="post-type">Playlist</div>
+</div>
+<div class="post-content">
+<p>Just curated a new playlist featuring the best indie rock tracks of 2023. Let me know what you think!</p>
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Playlist cover">
+</div>
+<div class="activity-actions">
+<button class="activity-action active">
+<i class="fas fa-thumbs-up"></i>
+<span>42</span>
+</button>
+<button class="activity-action">
+<i class="far fa-thumbs-down"></i>
+<span>1</span>
+</button>
+<button class="activity-action">
+<i class="far fa-comment"></i>
+<span>15</span>
+</button>
+<button class="activity-action">
+<i class="fas fa-share"></i>
+<span>Share</span>
+</button>
+</div>
+</div>
+
+<div class="activity-card">
+<div class="activity-header">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar">
+<div class="activity-meta">
+<div class="member-name">Marcus Brown</div>
+<div class="activity-time">1 day ago</div>
+</div>
+<div class="post-type">Event</div>
+</div>
+<div class="post-content">
+<p>Hosting a virtual listening party this Friday at 8 PM EST for the new Arctic Monkeys album. Who's joining?</p>
+</div>
+<div class="activity-actions">
+<button class="activity-action">
+<i class="far fa-thumbs-up"></i>
+<span>37</span>
+</button>
+<button class="activity-action">
+<i class="far fa-thumbs-down"></i>
+<span>3</span>
+</button>
+<button class="activity-action">
+<i class="far fa-comment"></i>
+<span>22</span>
+</button>
+<button class="activity-action">
+<i class="fas fa-share"></i>
+<span>Share</span>
+</button>
+</div>
+</div>
+
+<div class="activity-card">
+<div class="activity-header">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar">
+<div class="activity-meta">
+<div class="member-name">Jamal Williams</div>
+<div class="activity-time">2 days ago</div>
+</div>
+<div class="post-type">Poll</div>
+</div>
+<div class="post-content">
+<p>What's your favorite indie rock album of all time? Vote below!</p>
+</div>
+<div class="activity-actions">
+<button class="activity-action">
+<i class="far fa-thumbs-up"></i>
+<span>18</span>
+</button>
+<button class="activity-action">
+<i class="far fa-thumbs-down"></i>
+<span>0</span>
+</button>
+<button class="activity-action">
+<i class="far fa-comment"></i>
+<span>31</span>
+</button>
+<button class="activity-action">
+<i class="fas fa-share"></i>
+<span>Share</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="trybe-sidebar">
+<!-- Trybe Info Box -->
+<div class="trybe-info-box">
+<h3 class="box-title">About This Trybe</h3>
+<div class="trybe-description-box">
+<p class="trybe-description-text">A community for indie rock enthusiasts to share music, discover new artists, and connect with like-minded fans. Founded in 2022.</p>
+<div class="trybe-members">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar-small">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar-small">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="Member" class="member-avatar-small">
+<div class="members-more">+2.3K</div>
+</div>
+</div>
+
+<h3 class="box-title">Top Playlists <a href="#" class="view-all">View all</a></h3>
+<div class="playlist-item">
+<div class="playlist-thumb"></div>
+<div class="playlist-details">
+<div class="playlist-name">Indie Rock Essentials</div>
+<div class="playlist-creator">By Alex Turner</div>
+<div class="playlist-stats-small">
+<div class="playlist-stat-small">
+<i class="fas fa-play"></i>
+<span>24.5K</span>
+</div>
+<div class="playlist-stat-small">
+<i class="fas fa-heart"></i>
+<span>1.2K</span>
+</div>
+</div>
+</div>
+</div>
+<div class="playlist-item">
+<div class="playlist-thumb" style="background:linear-gradient(135deg, #ff6b6b, #ff9e6b);"></div>
+<div class="playlist-details">
+<div class="playlist-name">Chill Indie Vibes</div>
+<div class="playlist-creator">By Sarah Chen</div>
+<div class="playlist-stats-small">
+<div class="playlist-stat-small">
+<i class="fas fa-play"></i>
+<span>18.7K</span>
+</div>
+<div class="playlist-stat-small">
+<i class="fas fa-heart"></i>
+<span>987</span>
+</div>
+</div>
+</div>
+</div>
+<div class="playlist-item">
+<div class="playlist-thumb" style="background:linear-gradient(135deg, #0cebeb, #20e3b2);"></div>
+<div class="playlist-details">
+<div class="playlist-name">Indie Dance Party</div>
+<div class="playlist-creator">By Marcus Brown</div>
+<div class="playlist-stats-small">
+<div class="playlist-stat-small">
+<i class="fas fa-play"></i>
+<span>15.2K</span>
+</div>
+<div class="playlist-stat-small">
+<i class="fas fa-heart"></i>
+<span>845</span>
+</div>
+</div>
+</div>
+</div>
+
+<h3 class="box-title">Upcoming Events <a href="#" class="view-all">View all</a></h3>
+<div class="event-item">
+<div class="event-date">
+<div class="event-day">15</div>
+<div class="event-month">Sep</div>
+</div>
+<div class="event-info">
+<div class="event-title">Indie Rock Listening Party</div>
+<div class="event-details">8:00 PM • Virtual</div>
+<div class="event-attendees">
+<i class="fas fa-users"></i>
+<span>42 attending</span>
+</div>
+</div>
+<button class="join-btn">Join</button>
+</div>
+<div class="event-item">
+<div class="event-date">
+<div class="event-day">18</div>
+<div class="event-month">Sep</div>
+</div>
+<div class="event-info">
+<div class="event-title">Live Q&A with Local Band</div>
+<div class="event-details">7:30 PM • Studio A</div>
+<div class="event-attendees">
+<i class="fas fa-users"></i>
+<span>28 attending</span>
+</div>
+</div>
+<button class="join-btn">Join</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<div class="player-bar">
+<div class="player-info">
+<div class="song-name">Do I Wanna Know?</div>
+<div class="artist-name">Arctic Monkeys</div>
+</div>
+<div class="player-controls">
+<button class="shuffle"><i class="fas fa-random"></i></button>
+<button class="step-backward"><i class="fas fa-step-backward"></i></button>
+<button class="play-pause"><i class="fas fa-play-circle"></i></button>
+<button class="step-forward"><i class="fas fa-step-forward"></i></button>
+<button class="repeat"><i class="fas fa-redo"></i></button>
+</div>
+<div class="player-progress">
+<div class="time">1:20</div>
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+<div class="time">4:30</div>
+</div>
+<div class="player-actions">
+<button class="like"><i class="far fa-heart"></i></button>
+<button class="playlist"><i class="fas fa-list"></i></button>
+</div>
+</div>
+<nav class="mobile-nav">
+<div class="mobile-nav-items">
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-home"></i>
+<span>Home</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-users"></i>
+<span>Trybe</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-book"></i>
+<span>Library</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-search"></i>
+<span>Search</span>
+</a>
+</div>
+</nav>
+<script>
+// Basic functionality for the trybe page
+document.addEventListener('DOMContentLoaded', function() {
+    // Play/pause button functionality
+    const playPauseBtn = document.querySelector('.play-pause');
+    
+    playPauseBtn.addEventListener('click', function() {
+        const isPlaying = this.querySelector('i').classList.contains('fa-pause-circle');
+        
+        if (isPlaying) {
+            this.querySelector('i').classList.remove('fa-pause-circle');
+            this.querySelector('i').classList.add('fa-play-circle');
+        } else {
+            this.querySelector('i').classList.remove('fa-play-circle');
+            this.querySelector('i').classList.add('fa-pause-circle');
+        }
+    });
+    
+    // Like button functionality
+    const likeBtns = document.querySelectorAll('.like, .activity-action:first-child');
+    
+    likeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const isLiked = this.querySelector('i').classList.contains('fas');
+            
+            if (isLiked) {
+                this.querySelector('i').classList.remove('fas');
+                this.querySelector('i').classList.add('far');
+                this.classList.remove('active');
+            } else {
+                this.querySelector('i').classList.remove('far');
+                this.querySelector('i').classList.add('fas');
+                this.classList.add('active');
+            }
+        });
+    });
+    
+    // Join button functionality
+    const joinBtns = document.querySelectorAll('.join-btn');
+    
+    joinBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.textContent === 'Join') {
+                this.textContent = 'Joined';
+                this.style.background = '#6a11cb';
+                this.style.color = '#fff';
+            } else {
+                this.textContent = 'Join';
+                this.style.background = 'transparent';
+                this.style.color = '#6a11cb';
+            }
+        });
+    });
+    
+    // Trybe action button functionality
+    const trybeActionBtn = document.querySelector('.trybe-action-btn.primary');
+    
+    trybeActionBtn.addEventListener('click', function() {
+        if (this.textContent === 'Join Trybe') {
+            this.textContent = 'Leave Trybe';
+            this.style.background = '#ff4d4d';
+        } else {
+            this.textContent = 'Join Trybe';
+            this.style.background = '#fff';
+        }
+    });
+});
+</script>
+</body>
+</html>
