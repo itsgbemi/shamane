@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playlist - Shamana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Work Sans',sans-serif;background-color:#000;color:#fff;letter-spacing:-0.5px;max-width:1600px;margin:0 auto;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1200px;margin:0 auto;padding:0 15px;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:20px;position:relative;max-width:1600px;margin:0 auto;}
+.logo img{height:100%;max-width:180px;}
+.nav{display:flex;gap:30px;}
+.nav a{font-weight:500;position:relative;}
+.nav a.active:after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background-color:#fff;}
+.search-bar{flex:1;max-width:400px;margin:0 20px;position:relative;}
+.search-bar input{width:100%;padding:8px 15px;border-radius:20px;border:none;background:#222;color:#fff;}
+.search-bar i{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#999;}
+.actions{display:flex;align-items:center;gap:15px;}
+.upload-btn{display:flex;align-items:center;gap:5px;font-weight:500;cursor:pointer;}
+.user-account{display:flex;align-items:center;gap:5px;cursor:pointer;}
+.user-account i{font-size:32px;color:#fff;}
+
+/* Playlist Banner */
+.playlist-banner {position:relative;height:300px;border-radius:12px;overflow:hidden;margin:40px 0;display:flex;align-items:flex-end;padding:40px;background:linear-gradient(135deg,#6a11cb,#2575fc);}
+.playlist-info {position:relative;z-index:2;width:100%;}
+.playlist-title {font-size:2.5rem;font-weight:700;margin-bottom:10px;}
+.playlist-description {font-size:1.1rem;margin-bottom:20px;opacity:0.9;max-width:600px;}
+.playlist-stats {display:flex;gap:20px;font-size:0.9rem;color:#ccc;}
+.playlist-stat {display:flex;align-items:center;gap:5px;}
+
+/* Playlist Content */
+.playlist-content {display:flex;gap:30px;margin-bottom:60px;}
+.playlist-main {flex:3;display:flex;flex-direction:column;gap:30px;}
+.playlist-sidebar {flex:1;display:flex;flex-direction:column;gap:30px;}
+
+/* Playlist Box */
+.playlist-box {background:#111;border-radius:12px;padding:20px;}
+.comment-input {display:flex;gap:10px;margin-bottom:20px;}
+.commenter-avatar {width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.comment-input-field {flex:1;background:#222;border:none;border-radius:20px;padding:12px 15px;color:#fff;font-family:inherit;}
+.comment-input-field:focus {outline:none;}
+.action-buttons {display:flex;gap:15px;margin-bottom:20px;}
+.action-btn {display:flex;align-items:center;gap:5px;background:transparent;border:none;color:#ccc;cursor:pointer;font-size:0.9rem;transition:color 0.2s;}
+.action-btn:hover {color:#fff;}
+.action-btn.active {color:#6a11cb;}
+.song-list {display:flex;flex-direction:column;gap:10px;}
+.song-item {display:flex;align-items:center;gap:15px;padding:10px;border-radius:8px;transition:background 0.2s;}
+.song-item:hover {background:#1a1a1a;}
+.song-number {color:#6a11cb;font-weight:500;width:25px;text-align:center;}
+.song-info {flex:1;}
+.song-title {font-weight:500;margin-bottom:3px;}
+.song-artist {font-size:0.85rem;color:#999;}
+.song-duration {color:#999;font-size:0.9rem;margin:0 15px;}
+.song-actions {display:flex;gap:10px;}
+.song-action-btn {background:transparent;border:none;color:#999;cursor:pointer;font-size:0.9rem;}
+.song-action-btn:hover {color:#fff;}
+
+/* Playlist Addition Box */
+.playlist-addition-box {background:#111;border-radius:12px;padding:20px;}
+.box-title {font-size:1.2rem;font-weight:600;margin-bottom:15px;}
+.song-queue {margin-bottom:25px;}
+.queue-item {display:flex;align-items:center;gap:10px;padding:8px 0;}
+.queue-item:not(:last-child) {border-bottom:1px solid #222;}
+.queue-info {flex:1;}
+.queue-title {font-size:0.9rem;font-weight:500;}
+.queue-artist {font-size:0.8rem;color:#999;}
+.queue-duration {color:#999;font-size:0.8rem;}
+
+/* Avatar Groups */
+.avatar-group {display:flex;margin:15px 0 25px;}
+.avatar {width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid #111;margin-left:-10px;}
+.avatar:first-child {margin-left:0;}
+.avatar-more {width:35px;height:35px;border-radius:50%;background:#6a11cb;display:flex;align-items:center;justify-content:center;font-size:0.8rem;margin-left:-10px;}
+
+/* Creator Playlists */
+.creator-playlists {margin-top:25px;}
+.creator-playlist {display:flex;gap:10px;padding:10px 0;}
+.creator-playlist:not(:last-child) {border-bottom:1px solid #222;}
+.playlist-thumb-small {width:50px;height:50px;border-radius:8px;background:linear-gradient(135deg,#6a11cb,#2575fc);flex-shrink:0;}
+.playlist-info-small {flex:1;}
+.playlist-name-small {font-size:0.9rem;font-weight:500;margin-bottom:3px;}
+.playlist-songs-small {font-size:0.8rem;color:#999;}
+
+/* Player Bar */
+.player-bar{position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(90deg, rgba(30,30,30,0.95), rgba(50,50,50,0.95));backdrop-filter:blur(10px);padding:20px;z-index:900;display:flex;align-items:center;justify-content:space-between;}
+.player-info{flex:1;max-width:30%;}
+.song-name{font-weight:600;font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.artist-name{font-size:0.8rem;color:#ccc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-controls{display:flex;align-items:center;gap:15px;}
+.player-controls button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:0.8;transition:opacity 0.2s;}
+.player-controls button:hover{opacity:1;}
+.player-controls .play-pause{font-size:28px;}
+.player-progress{flex:2;max-width:40%;display:flex;align-items:center;gap:10px;}
+.progress-bar{flex:1;height:4px;background:rgba(255,255,255,0.3);border-radius:2px;cursor:pointer;position:relative;}
+.progress{position:absolute;height:100%;background:#fff;border-radius:2px;width:30%;}
+.time{font-size:0.7rem;color:#ccc;min-width:35px;}
+.time:first-child{text-align:right;}
+.player-actions{flex:1;max-width:30%;display:flex;justify-content:flex-end;gap:15px;}
+.player-actions button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:0.8;transition:opacity 0.2s;}
+.player-actions button:hover{opacity:1;}
+.player-actions button.active{color:#6a11cb;}
+
+/* Mobile Nav */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;width:100%;background-color:#111;z-index:1000;padding:10px 0;}
+.mobile-nav-items{display:flex;justify-content:space-around;}
+.mobile-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;}
+.mobile-nav-item i{font-size:18px;}
+
+/* Responsive Design */
+@media (max-width:1024px){
+.logo img{max-width:150px;}
+.playlist-banner {height:250px;padding:30px;}
+.playlist-title {font-size:2rem;}
+}
+@media (max-width:768px){
+.nav,.search-bar{display:none;}
+.logo img{max-width:120px;}
+.mobile-nav{display:block;}
+.player-bar{bottom:60px;background:linear-gradient(90deg, rgba(30,30,30,0.95), rgba(50,50,50,0.95));backdrop-filter:blur(15px);margin:10px;border-radius:30px;width:calc(100% - 20px);left:10px;padding:15px;flex-direction:row;align-items:center;gap:10px;}
+.player-info{max-width:none;flex:1;text-align:left;order:2;}
+.player-controls{order:1;gap:0;flex:0 0 auto;}
+.player-controls .shuffle,.player-controls .repeat,.player-controls .step-backward,.player-controls .step-forward{display:none;}
+.player-controls .play-pause{font-size:24px;margin-right:10px;}
+.player-progress{display:none;}
+.player-actions{max-width:none;order:3;justify-content:flex-end;gap:15px;position:static;flex:0 0 auto;}
+.playlist-content{flex-direction:column;}
+.playlist-main,.playlist-sidebar{width:100%;}
+.playlist-banner{height:200px;margin:20px 0;padding:20px;}
+.playlist-title{font-size:1.8rem;}
+.upload-btn{background-color:#555;padding:8px;border-radius:50%;}
+.upload-btn span{display:none;}
+.user-account i:last-child{display:none;}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header">
+<a href="#" class="logo"><img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758201861/y3p2lwz2oq5gwny6ktyu.svg" alt="Shamana"></a>
+<nav class="nav">
+<a href="#">Home</a>
+<a href="#">Trybe</a>
+<a href="#" class="active">Library</a>
+</nav>
+<div class="search-bar">
+<input type="text" placeholder="Search...">
+<i class="fas fa-search"></i>
+</div>
+<div class="actions">
+<div class="upload-btn">
+<i class="fas fa-cloud-upload-alt"></i>
+<span>Upload</span>
+</div>
+<div class="user-account">
+<i class="fas fa-user-circle"></i>
+<i class="fas fa-chevron-down"></i>
+</div>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<!-- Playlist Banner -->
+<section class="playlist-banner">
+<div class="playlist-info">
+<h1 class="playlist-title">Indie Rock Essentials</h1>
+<p class="playlist-description">The best indie rock tracks that defined a generation. Curated by Alex Turner.</p>
+<div class="playlist-stats">
+<div class="playlist-stat">
+<i class="fas fa-music"></i>
+<span>24 songs</span>
+</div>
+<div class="playlist-stat">
+<i class="fas fa-clock"></i>
+<span>1h 42m</span>
+</div>
+<div class="playlist-stat">
+<i class="fas fa-heart"></i>
+<span>2.4K likes</span>
+</div>
+<div class="playlist-stat">
+<i class="fas fa-play"></i>
+<span>45.7K plays</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Playlist Content -->
+<section class="playlist-content">
+<div class="playlist-main">
+<!-- Playlist Box -->
+<div class="playlist-box">
+<div class="comment-input">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="You" class="commenter-avatar">
+<input type="text" class="comment-input-field" placeholder="Write a comment...">
+</div>
+<div class="action-buttons">
+<button class="action-btn active">
+<i class="fas fa-play"></i>
+<span>Play</span>
+</button>
+<button class="action-btn">
+<i class="far fa-heart"></i>
+<span>Like</span>
+</button>
+<button class="action-btn">
+<i class="fas fa-share-alt"></i>
+<span>Share</span>
+</button>
+<button class="action-btn">
+<i class="fas fa-ellipsis-h"></i>
+<span>More</span>
+</button>
+</div>
+<div class="song-list">
+<div class="song-item">
+<span class="song-number">1</span>
+<div class="song-info">
+<div class="song-title">Do I Wanna Know?</div>
+<div class="song-artist">Arctic Monkeys</div>
+</div>
+<span class="song-duration">4:32</span>
+<div class="song-actions">
+<button class="song-action-btn"><i class="far fa-heart"></i></button>
+<button class="song-action-btn"><i class="fas fa-plus"></i></button>
+</div>
+</div>
+<div class="song-item">
+<span class="song-number">2</span>
+<div class="song-info">
+<div class="song-title">Time to Pretend</div>
+<div class="song-artist">MGMT</div>
+</div>
+<span class="song-duration">4:21</span>
+<div class="song-actions">
+<button class="song-action-btn"><i class="far fa-heart"></i></button>
+<button class="song-action-btn"><i class="fas fa-plus"></i></button>
+</div>
+</div>
+<div class="song-item">
+<span class="song-number">3</span>
+<div class="song-info">
+<div class="song-title">Last Nite</div>
+<div class="song-artist">The Strokes</div>
+</div>
+<span class="song-duration">3:18</span>
+<div class="song-actions">
+<button class="song-action-btn"><i class="far fa-heart"></i></button>
+<button class="song-action-btn"><i class="fas fa-plus"></i></button>
+</div>
+</div>
+<div class="song-item">
+<span class="song-number">4</span>
+<div class="song-info">
+<div class="song-title">1901</div>
+<div class="song-artist">Phoenix</div>
+</div>
+<span class="song-duration">3:13</span>
+<div class="song-actions">
+<button class="song-action-btn"><i class="far fa-heart"></i></button>
+<button class="song-action-btn"><i class="fas fa-plus"></i></button>
+</div>
+</div>
+<div class="song-item">
+<span class="song-number">5</span>
+<div class="song-info">
+<div class="song-title">Electric Feel</div>
+<div class="song-artist">MGMT</div>
+</div>
+<span class="song-duration">3:50</span>
+<div class="song-actions">
+<button class="song-action-btn"><i class="far fa-heart"></i></button>
+<button class="song-action-btn"><i class="fas fa-plus"></i></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="playlist-sidebar">
+<!-- Playlist Addition Box -->
+<div class="playlist-addition-box">
+<h3 class="box-title">Song Queue</h3>
+<div class="song-queue">
+<div class="queue-item">
+<div class="queue-info">
+<div class="queue-title">Next: Fluorescent Adolescent</div>
+<div class="queue-artist">Arctic Monkeys</div>
+</div>
+<span class="queue-duration">3:03</span>
+</div>
+<div class="queue-item">
+<div class="queue-info">
+<div class="queue-title">Then: Reptilia</div>
+<div class="queue-artist">The Strokes</div>
+</div>
+<span class="queue-duration">3:42</span>
+</div>
+</div>
+
+<h3 class="box-title">Liked By</h3>
+<div class="avatar-group">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="avatar">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="avatar">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="avatar">
+<div class="avatar-more">+27</div>
+</div>
+
+<h3 class="box-title">Contributors</h3>
+<div class="avatar-group">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="avatar">
+<img src="https://res.cloudinary.com/dqhawdcol/image/upload/v1758202400/e9ifs1tewfgemgxfc5kc.jpg" alt="User" class="avatar">
+<div class="avatar-more">+5</div>
+</div>
+
+<div class="creator-playlists">
+<h3 class="box-title">More by Alex Turner</h3>
+<div class="creator-playlist">
+<div class="playlist-thumb-small"></div>
+<div class="playlist-info-small">
+<div class="playlist-name-small">Alternative Classics</div>
+<div class="playlist-songs-small">18 songs • 1.2K likes</div>
+</div>
+</div>
+<div class="creator-playlist">
+<div class="playlist-thumb-small" style="background:linear-gradient(135deg, #ff6b6b, #ff9e6b);"></div>
+<div class="playlist-info-small">
+<div class="playlist-name-small">Late Night Vibes</div>
+<div class="playlist-songs-small">15 songs • 987 likes</div>
+</div>
+</div>
+<div class="creator-playlist">
+<div class="playlist-thumb-small" style="background:linear-gradient(135deg, #0cebeb, #20e3b2);"></div>
+<div class="playlist-info-small">
+<div class="playlist-name-small">Road Trip Mix</div>
+<div class="playlist-songs-small">22 songs • 1.5K likes</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<div class="player-bar">
+<div class="player-info">
+<div class="song-name">Do I Wanna Know?</div>
+<div class="artist-name">Arctic Monkeys</div>
+</div>
+<div class="player-controls">
+<button class="shuffle"><i class="fas fa-random"></i></button>
+<button class="step-backward"><i class="fas fa-step-backward"></i></button>
+<button class="play-pause"><i class="fas fa-play-circle"></i></button>
+<button class="step-forward"><i class="fas fa-step-forward"></i></button>
+<button class="repeat"><i class="fas fa-redo"></i></button>
+</div>
+<div class="player-progress">
+<div class="time">1:20</div>
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+<div class="time">4:30</div>
+</div>
+<div class="player-actions">
+<button class="like"><i class="far fa-heart"></i></button>
+<button class="playlist"><i class="fas fa-list"></i></button>
+</div>
+</div>
+<nav class="mobile-nav">
+<div class="mobile-nav-items">
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-home"></i>
+<span>Home</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-users"></i>
+<span>Trybe</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-book"></i>
+<span>Library</span>
+</a>
+<a href="#" class="mobile-nav-item">
+<i class="fas fa-search"></i>
+<span>Search</span>
+</a>
+</div>
+</nav>
+<script>
+// Basic functionality for the playlist page
+document.addEventListener('DOMContentLoaded', function() {
+    // Play/pause button functionality
+    const playPauseBtn = document.querySelector('.play-pause');
+    const playActionBtn = document.querySelector('.action-btn:first-child');
+    
+    function togglePlayState() {
+        const isPlaying = playPauseBtn.querySelector('i').classList.contains('fa-pause-circle');
+        
+        if (isPlaying) {
+            playPauseBtn.querySelector('i').classList.remove('fa-pause-circle');
+            playPauseBtn.querySelector('i').classList.add('fa-play-circle');
+            playActionBtn.querySelector('i').classList.remove('fa-pause');
+            playActionBtn.querySelector('i').classList.add('fa-play');
+        } else {
+            playPauseBtn.querySelector('i').classList.remove('fa-play-circle');
+            playPauseBtn.querySelector('i').classList.add('fa-pause-circle');
+            playActionBtn.querySelector('i').classList.remove('fa-play');
+            playActionBtn.querySelector('i').classList.add('fa-pause');
+        }
+    }
+    
+    playPauseBtn.addEventListener('click', togglePlayState);
+    playActionBtn.addEventListener('click', togglePlayState);
+    
+    // Like button functionality
+    const likeBtns = document.querySelectorAll('.like, .action-btn:nth-child(2)');
+    
+    likeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const isLiked = this.querySelector('i').classList.contains('fas');
+            
+            if (isLiked) {
+                this.querySelector('i').classList.remove('fas');
+                this.querySelector('i').classList.add('far');
+            } else {
+                this.querySelector('i').classList.remove('far');
+                this.querySelector('i').classList.add('fas');
+                this.classList.add('active');
+            }
+        });
+    });
+    
+    // Song item click functionality
+    const songItems = document.querySelectorAll('.song-item');
+    
+    songItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            if (!e.target.classList.contains('song-action-btn')) {
+                const songTitle = this.querySelector('.song-title').textContent;
+                const artistName = this.querySelector('.song-artist').textContent;
+                
+                document.querySelector('.song-name').textContent = songTitle;
+                document.querySelector('.artist-name').textContent = artistName;
+                
+                // Set playing state
+                playPauseBtn.querySelector('i').classList.remove('fa-play-circle');
+                playPauseBtn.querySelector('i').classList.add('fa-pause-circle');
+                playActionBtn.querySelector('i').classList.remove('fa-play');
+                playActionBtn.querySelector('i').classList.add('fa-pause');
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
